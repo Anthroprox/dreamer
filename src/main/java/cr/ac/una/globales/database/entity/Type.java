@@ -17,43 +17,48 @@ import javax.persistence.Table;
  * @author Rody
  */
 @Entity
-@Table(name="category")
-public class Category {
-    
+@Table(name = "type")
+public class Type {
+
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     private String name;
-    
-    public Category() { }
-    
-    public Category(int id) {
-        this.id = id;
-    }
-    
-    public Category(int id,String name) {
+
+    public Type(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    /**
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id the id to set
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name the name to set
+     */
     public void setName(String name) {
         this.name = name;
     }
-    
     
     
 }
