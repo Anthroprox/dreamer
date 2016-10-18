@@ -39,12 +39,12 @@ public class CategoryController {
         return (List<Category>) list;
     }
     
-     @RequestMapping(method = GET, path = "/category/listById/{id}")
+     @RequestMapping(method = GET, path = "/category/find/{id}")
      @ResponseBody
      public Category getListById(@PathVariable("id") int id) {
         Category list = new Category(-1,"Andrea");
         try {
-            list = categoryDao.findByCategory(id);
+            list = categoryDao.findOne(id);
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
