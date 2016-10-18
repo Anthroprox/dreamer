@@ -5,8 +5,8 @@
  */
 package cr.ac.una.globales.controllers;
 
-import cr.ac.una.globales.models.Category;
-import cr.ac.una.globales.models.CategoryDao;
+import cr.ac.una.globales.database.entity.Category;
+import cr.ac.una.globales.database.dao.CategoryDao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
