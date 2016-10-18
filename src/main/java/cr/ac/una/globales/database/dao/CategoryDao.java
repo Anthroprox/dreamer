@@ -8,7 +8,9 @@ package cr.ac.una.globales.database.dao;
 
 import cr.ac.una.globales.database.entity.Category;
 import javax.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 
 
@@ -18,5 +20,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 @Transactional
 public interface CategoryDao extends CrudRepository<Category, Integer>{
-    
+    @Query("from Category  c where c.id=:categoryId")
+    public Category findByCategory(@Param("categoryId") int categoryId);
 }

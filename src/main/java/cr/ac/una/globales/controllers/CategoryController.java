@@ -9,6 +9,7 @@ import cr.ac.una.globales.database.entity.Category;
 import cr.ac.una.globales.database.dao.CategoryDao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,6 +37,20 @@ public class CategoryController {
         }
         
         return (List<Category>) list;
+    }
+    
+     @RequestMapping(method = GET, path = "/category/listById/{id}")
+     @ResponseBody
+     public Category getListById(@PathVariable("id") int id) {
+        Category list = new Category(-1,"Andrea");
+        try {
+            list = categoryDao.findByCategory(id);
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return  list;
+        
     }
 
 }
