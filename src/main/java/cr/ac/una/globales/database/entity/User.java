@@ -20,109 +20,49 @@ import java.util.Date;
 @Entity
 @Table(name="user")
 public class User {
+    
     @Id
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     
-    private String title;
-    private String body;
-    private int category;
-    private int user;
-    private Date date;
+    private String username;
+    
+    private String passowrd;
 
-    public User(int id, String title, String body, int category, int user, Date date) {
+    public User(){
+        
+    }
+    public User(int id, String username, String passowrd) {
         this.id = id;
-        this.title = title;
-        this.body = body;
-        this.category = category;
-        this.user = user;
-        this.date = date;
+        this.username=username;
+        this.passowrd=passowrd;
     }
 
-    /**
-     * @return the id
-     */
     public int getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
+    public String getUsername() {
+        return username;
     }
 
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    /**
-     * @return the body
-     */
-    public String getBody() {
-        return body;
+    public String getPassowrd() {
+        return passowrd;
     }
 
-    /**
-     * @param body the body to set
-     */
-    public void setBody(String body) {
-        this.body = body;
+    public void setPassowrd(String passowrd) {
+        this.passowrd = passowrd;
     }
 
-    /**
-     * @return the category
-     */
-    public int getCategory() {
-        return category;
-    }
-
-    /**
-     * @param category the category to set
-     */
-    public void setCategory(int category) {
-        this.category = category;
-    }
-
-    /**
-     * @return the user
-     */
-    public int getUser() {
-        return user;
-    }
-
-    /**
-     * @param user the user to set
-     */
-    public void setUser(int user) {
-        this.user = user;
-    }
-
-    /**
-     * @return the fecha
-     */
-    public Date getDate() {
-        return date;
-    }
-
-    /**
-     * @param fecha the fecha to set
-     */
-    public void setDate(Date date) {
-        this.date = date;
-    }
     
     
 }

@@ -29,7 +29,9 @@ public class Idea {
     private String body;
     private int category;
     private int user;
-
+    
+    public Idea(){}
+    
     public Idea(int id, String title, String body, int category, int user) {
         this.id = id;
         this.title = title;
