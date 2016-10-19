@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -27,12 +29,18 @@ public class Idea {
     
     private String title;
     private String body;
-    private int category;
-    private int user;
+    
+    @OneToOne
+    @JoinColumn(name = "category")
+    private Category category;
+    
+    @OneToOne
+    @JoinColumn(name = "user")
+    private User user;
     
     public Idea(){}
     
-    public Idea(int id, String title, String body, int category, int user) {
+    public Idea(int id, String title, String body, Category category, User user) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -85,28 +93,28 @@ public class Idea {
     /**
      * @return the category
      */
-    public int getCategory() {
+    public Category getCategory() {
         return category;
     }
 
     /**
      * @param category the category to set
      */
-    public void setCategory(int category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
     /**
      * @return the user
      */
-    public int getUser() {
+    public User getUser() {
         return user;
     }
 
     /**
      * @param user the user to set
      */
-    public void setUser(int user) {
+    public void setUser(User user) {
         this.user = user;
     }
     

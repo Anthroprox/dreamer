@@ -9,6 +9,7 @@ import cr.ac.una.globales.database.dao.CommentaryDao;
 import cr.ac.una.globales.database.entity.Commentary;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,5 +37,17 @@ public class CommentaryController {
             System.out.println(ex.getMessage());
         }
         return (List<Commentary>) list;
+    }
+    
+    @RequestMapping(method = GET, path = "/commentary/find/{id}")
+    @ResponseBody
+    public Commentary getListById(@PathVariable("id") int id) {
+        Commentary commentary = new Commentary();
+        try {
+            commentary = commentaryDao.findOne(id);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return  commentary;
     }
 }
