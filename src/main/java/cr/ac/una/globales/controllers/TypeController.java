@@ -6,8 +6,6 @@
 package cr.ac.una.globales.controllers;
 
 import cr.ac.una.globales.database.dao.TypeDao;
-import cr.ac.una.globales.database.entity.Commentary;
-import cr.ac.una.globales.database.entity.Opinion;
 import cr.ac.una.globales.database.entity.Type;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +39,7 @@ public class TypeController {
     }
     
      @RequestMapping(method = GET, path = "/type/find/{id}")
-       @ResponseBody
+     @ResponseBody
      public Type getTypeById(@PathVariable("id") int id) {
         Type list = new Type();
         try {

@@ -6,7 +6,6 @@
 package cr.ac.una.globales.controllers;
 
 import cr.ac.una.globales.database.dao.UserDao;
-import cr.ac.una.globales.database.entity.Category;
 import cr.ac.una.globales.database.entity.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
