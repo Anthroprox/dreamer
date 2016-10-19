@@ -26,7 +26,7 @@ public class Opinion {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-      @OneToOne
+    @OneToOne
     @JoinColumn(name = "user")
     private User user;
     
@@ -34,10 +34,12 @@ public class Opinion {
     @JoinColumn(name = "idea")
     private Idea idea;
     
-    private int type;
+    @OneToOne
+    @JoinColumn(name = "type")
+    private Type type;
 
     public Opinion(){}
-    public Opinion(int id, User user, Idea idea, int type) {
+    public Opinion(int id, User user, Idea idea, Type type) {
         this.id = id;
         this.user = user;
         this.idea = idea;
@@ -89,14 +91,14 @@ public class Opinion {
     /**
      * @return the type
      */
-    public int getType() {
+    public Type getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(int type) {
+    public void setType(Type type) {
         this.type = type;
     }
     
