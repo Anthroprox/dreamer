@@ -6,9 +6,11 @@
 package cr.ac.una.globales.controllers;
 
 import cr.ac.una.globales.database.dao.OpinionDao;
+import cr.ac.una.globales.database.entity.Category;
 import cr.ac.una.globales.database.entity.Opinion;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,5 +37,19 @@ public class OpinionController {
             System.out.println(ex.getMessage());
         }
         return (List<Opinion>) list;
+    }
+    
+     @RequestMapping(method = GET, path = "/opinion/find/{id}")
+     @ResponseBody
+     public Opinion getOpinionById(@PathVariable("id") int id) {
+        Opinion list = new Opinion();
+        try {
+            list = opinionDao.findOne(id);
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return  list;
+        
     }
 }
