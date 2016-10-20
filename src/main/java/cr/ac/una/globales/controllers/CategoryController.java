@@ -10,8 +10,10 @@ import cr.ac.una.globales.database.dao.CategoryDao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,29 +30,18 @@ public class CategoryController {
     @RequestMapping(method = GET, path = "/category/list")
     @ResponseBody
     public List<Category> getList() {
-        Iterable<Category> list = null;
-        try {
-            list = categoryDao.findAll();
-
-        } catch (Exception ex) {
-            
-        }
-        
-        return (List<Category>) list;
-    }
-    
-     @RequestMapping(method = GET, path = "/category/find/{id}")
-     @ResponseBody
-     public Category getListById(@PathVariable("id") int id) {
-        Category list = new Category(-1,"Andrea");
-        try {
-            list = categoryDao.findOne(id);
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        return  list;
-        
+        return (List<Category>) categoryDao.findAll();
     }
 
+    @RequestMapping(method = GET, path = "/category/find/{id}")
+    @ResponseBody
+    public Category getListById(@PathVariable("id") int id) {
+        return categoryDao.findOne(id);
+    }
+
+    @RequestMapping(method = POST, path = "/new/category")
+    @ResponseBody
+    public Integer newCategory(@RequestBody Category category) {
+        return categoryDao.save(category).getId();
+    }
 }

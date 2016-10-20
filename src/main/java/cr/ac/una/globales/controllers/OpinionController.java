@@ -6,13 +6,14 @@
 package cr.ac.una.globales.controllers;
 
 import cr.ac.una.globales.database.dao.OpinionDao;
-import cr.ac.una.globales.database.entity.Category;
 import cr.ac.una.globales.database.entity.Opinion;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,34 +23,25 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class OpinionController {
-    
+
     @Autowired
     private OpinionDao opinionDao;
 
     @RequestMapping(method = GET, path = "/opinion/list")
     @ResponseBody
     public List<Opinion> getList() {
-        Iterable<Opinion> list = null;
-        try {
-            list = opinionDao.findAll();
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        return (List<Opinion>) list;
+        return (List<Opinion>) opinionDao.findAll();
     }
-    
-     @RequestMapping(method = GET, path = "/opinion/find/{id}")
-     @ResponseBody
-     public Opinion getOpinionById(@PathVariable("id") int id) {
-        Opinion list = new Opinion();
-        try {
-            list = opinionDao.findOne(id);
 
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        return  list;
-        
+    @RequestMapping(method = GET, path = "/opinion/find/{id}")
+    @ResponseBody
+    public Opinion getOpinionById(@PathVariable("id") int id) {
+        return opinionDao.findOne(id);
+    }
+
+    @RequestMapping(method = POST, path = "/new/opinion")
+    @ResponseBody
+    public Integer newOpinion(@RequestBody Opinion opinion) {
+        return opinionDao.save(opinion).getId();
     }
 }

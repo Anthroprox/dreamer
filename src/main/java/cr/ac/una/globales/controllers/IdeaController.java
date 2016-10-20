@@ -10,8 +10,10 @@ import cr.ac.una.globales.database.entity.Idea;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,31 +23,25 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class IdeaController {
-    
+
     @Autowired
     private IdeaDao ideaDao;
 
     @RequestMapping(method = GET, path = "/idea/list")
     @ResponseBody
     public List<Idea> getList() {
-        Iterable<Idea> list = null;
-        try {
-            list = ideaDao.findAll();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        return (List<Idea>) list;
+        return (List<Idea>) ideaDao.findAll();
     }
-    
+
     @RequestMapping(method = GET, path = "/idea/find/{id}")
     @ResponseBody
     public Idea getListById(@PathVariable("id") int id) {
-        Idea idea = new Idea();
-        try {
-            idea = ideaDao.findOne(id);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        return  idea;
+        return ideaDao.findOne(id);
+    }
+
+    @RequestMapping(method = POST, path = "/new/idea")
+    @ResponseBody
+    public Integer newIdea(@RequestBody Idea idea) {
+        return ideaDao.save(idea).getId();
     }
 }

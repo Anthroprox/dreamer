@@ -10,8 +10,10 @@ import cr.ac.una.globales.database.entity.Type;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,34 +23,25 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TypeController {
+
     @Autowired
     private TypeDao typeDao;
-    
+
     @RequestMapping(method = GET, path = "/type/list")
     @ResponseBody
     public List<Type> getList() {
-        Iterable<Type> list = null;
-        try {
-            list = typeDao.findAll();
-
-        } catch (Exception ex) {
-
-            System.out.println(ex.getMessage());
-        }
-        return (List<Type>) list;
+        return (List<Type>) typeDao.findAll();
     }
-    
-     @RequestMapping(method = GET, path = "/type/find/{id}")
-     @ResponseBody
-     public Type getTypeById(@PathVariable("id") int id) {
-        Type list = new Type();
-        try {
-            list = typeDao.findOne(id);
 
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        return  list;
-        
+    @RequestMapping(method = GET, path = "/type/find/{id}")
+    @ResponseBody
+    public Type getTypeById(@PathVariable("id") int id) {
+        return typeDao.findOne(id);
+    }
+
+    @RequestMapping(method = POST, path = "/new/type")
+    @ResponseBody
+    public Integer newType(@RequestBody Type type) {
+        return typeDao.save(type).getId();
     }
 }

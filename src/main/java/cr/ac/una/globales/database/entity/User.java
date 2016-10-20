@@ -28,15 +28,15 @@ public class User {
     
     private String username;
     
-    private String passowrd;
+    private String password;
 
     public User(){
         
     }
-    public User(int id, String username, String passowrd) {
+    public User(int id, String username, String password) {
         this.id = id;
         this.username=username;
-        this.passowrd=passowrd;
+        this.password=password;
     }
 
     public int getId() {
@@ -55,12 +55,12 @@ public class User {
         this.username = username;
     }
 
-    public String getPassowrd() {
-        return passowrd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassowrd(String passowrd) {
-        this.passowrd = passowrd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     

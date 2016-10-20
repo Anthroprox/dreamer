@@ -10,8 +10,10 @@ import cr.ac.una.globales.database.entity.Commentary;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,26 +30,18 @@ public class CommentaryController {
     @RequestMapping(method = GET, path = "/commentary/list")
     @ResponseBody
     public List<Commentary> getList() {
-        Iterable<Commentary> list = null;
-        try {
-            list = commentaryDao.findAll();
-
-        } catch (Exception ex) {
-
-            System.out.println(ex.getMessage());
-        }
-        return (List<Commentary>) list;
+        return (List<Commentary>) commentaryDao.findAll();
     }
-    
+
     @RequestMapping(method = GET, path = "/commentary/find/{id}")
     @ResponseBody
     public Commentary getListById(@PathVariable("id") int id) {
-        Commentary commentary = new Commentary();
-        try {
-            commentary = commentaryDao.findOne(id);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        return  commentary;
+        return commentaryDao.findOne(id);
+    }
+
+    @RequestMapping(method = POST, path = "/new/commentary")
+    @ResponseBody
+    public Integer newCommentary(@RequestBody Commentary commentary) {
+        return commentaryDao.save(commentary).getId();
     }
 }
