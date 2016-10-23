@@ -9,6 +9,7 @@ import cr.ac.una.globales.database.dao.UserDao;
 import cr.ac.una.globales.database.entity.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Rody
  */
+@CrossOrigin()
 @RestController
 public class UserController {
 
