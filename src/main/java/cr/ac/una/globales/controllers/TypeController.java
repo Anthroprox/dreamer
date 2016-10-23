@@ -41,7 +41,7 @@ public class TypeController {
         return typeDao.findOne(id);
     }
 
-    @RequestMapping(method = POST, path = "/new/type")
+    @RequestMapping(method = POST, path = "/type/new")
     @ResponseBody
     public Integer newType(@RequestBody Type type) {
         return typeDao.save(type).getId();

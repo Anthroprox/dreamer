@@ -41,7 +41,7 @@ public class IdeaController {
         return ideaDao.findOne(id);
     }
 
-    @RequestMapping(method = POST, path = "/new/idea")
+    @RequestMapping(method = POST, path = "/idea/new")
     @ResponseBody
     public Integer newIdea(@RequestBody Idea idea) {
         return ideaDao.save(idea).getId();

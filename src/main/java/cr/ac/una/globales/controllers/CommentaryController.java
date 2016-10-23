@@ -41,7 +41,7 @@ public class CommentaryController {
         return commentaryDao.findOne(id);
     }
 
-    @RequestMapping(method = POST, path = "/new/commentary")
+    @RequestMapping(method = POST, path = "/commentary/new")
     @ResponseBody
     public Integer newCommentary(@RequestBody Commentary commentary) {
         return commentaryDao.save(commentary).getId();

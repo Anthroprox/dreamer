@@ -34,7 +34,7 @@ public class UserController {
         return (List<User>) userDao.findAll();
     }
 
-    @RequestMapping(method = POST, path = "/new/user")
+    @RequestMapping(method = POST, path = "/user/new")
     @ResponseBody
     public Integer newUser(@RequestBody User user) {
         return userDao.save(user).getId();

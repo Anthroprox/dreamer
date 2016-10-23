@@ -41,7 +41,7 @@ public class OpinionController {
         return opinionDao.findOne(id);
     }
 
-    @RequestMapping(method = POST, path = "/new/opinion")
+    @RequestMapping(method = POST, path = "/opinion/new")
     @ResponseBody
     public Integer newOpinion(@RequestBody Opinion opinion) {
         return opinionDao.save(opinion).getId();
