@@ -26,11 +26,11 @@ public class LoginController {
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping(method = GET, path = "/user/login/{id}/{password}")
+    @RequestMapping(method = GET, path = "/user/login/{username}/{password}")
     @ResponseBody
-    public User login(@PathVariable("id") int id, @PathVariable("password") String password) {
-        User usr = userDao.findOne(id);
-        if(usr.getPassword() == null ? password == null : usr.getPassword().equals(password))
+    public User login(@PathVariable("username") String username, @PathVariable("password") String password) {
+        User usr = userDao.findByUsername(username);
+        if(usr.getPassword().equals(password))
             return usr;
         return null;
     }
