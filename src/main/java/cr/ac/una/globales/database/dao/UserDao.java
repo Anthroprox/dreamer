@@ -5,9 +5,12 @@
  */
 package cr.ac.una.globales.database.dao;
 
+import cr.ac.una.globales.database.entity.Category;
 import cr.ac.una.globales.database.entity.User;
 import javax.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 /**
  *
  * @author Rody
