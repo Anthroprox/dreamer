@@ -30,9 +30,12 @@ public class LoginController {
     @ResponseBody
     public User login(@PathVariable("username") String username, @PathVariable("password") String password) {
         User usr = userDao.findByUsername(username);
-        if(usr.getPassword().equals(password))
+        if(usr.getPassword().equals(password)){
+           
             return usr;
-        return null;
-    }
-
+        }
+        else{
+              throw new IllegalArgumentException("Usuario o contraseña incorrecta");
+        }
+    }    
 }
