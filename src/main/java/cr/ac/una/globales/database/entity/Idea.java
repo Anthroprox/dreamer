@@ -37,6 +37,9 @@ public class Idea {
     @OneToOne
     @JoinColumn(name = "user")
     private User user;
+
+    
+
     
     public Idea(){}
     
