@@ -9,6 +9,8 @@ import cr.ac.una.globales.database.dao.IdeaDao;
 import cr.ac.una.globales.database.entity.Idea;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,4 +48,13 @@ public class IdeaController {
     public Integer newIdea(@RequestBody Idea idea) {
         return ideaDao.save(idea).getId();
     }
+    
+    @RequestMapping(method = GET, path = "/idea/top/{id}")
+    @ResponseBody
+    public List<Idea>  getIdeaCount(@PathVariable("id") int id) {
+        Pageable topTen = new PageRequest(0, 10);
+        return ideaDao. getIdeaCount(id,topTen);
+    }
+   
+    
 }
