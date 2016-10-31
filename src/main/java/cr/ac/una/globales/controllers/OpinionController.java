@@ -44,6 +44,18 @@ public class OpinionController {
     @RequestMapping(method = POST, path = "/opinion/new")
     @ResponseBody
     public Integer newOpinion(@RequestBody Opinion opinion) {
-        return opinionDao.save(opinion).getId();
+        Opinion o = opinionDao.findByUserAndIdea(opinion.getUser().getId(), opinion.getIdea().getId());
+        
+        if(o == null ){
+            return opinionDao.save(opinion).getId();
+        }else if ( o.getType().getId() != opinion.getType().getId()){
+            o.setType(opinion.getType());
+            opinionDao.save(o);
+            return o.getId();
+        }else{
+            opinionDao.delete(o);
+            return -1;
+        }
+        
     }
 }
