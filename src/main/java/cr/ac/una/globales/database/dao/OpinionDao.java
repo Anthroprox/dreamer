@@ -6,8 +6,11 @@
 package cr.ac.una.globales.database.dao;
 
 import cr.ac.una.globales.database.entity.Opinion;
+import cr.ac.una.globales.database.entity.User;
 import javax.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -16,4 +19,6 @@ import org.springframework.data.repository.CrudRepository;
 @Transactional
 public interface OpinionDao extends CrudRepository<Opinion, Integer> {
     
+    @Query(value="select * from opinion where user = :pUser and idea = :pIdea", nativeQuery=true)
+    public Opinion findByUserAndIdea(@Param("pUser") Integer pUser, @Param("pIdea") Integer pIdea );
 }
