@@ -58,4 +58,16 @@ public class OpinionController {
         }
         
     }
+    
+    @RequestMapping(method = GET, path = "/opinion/count/approve/{idea}")
+    @ResponseBody
+    public Integer findTotalApproveFromIdea(@PathVariable("idea") int idea) {
+        return opinionDao.findTotalApproveFromIdea(idea);
+    }
+    
+    @RequestMapping(method = GET, path = "/opinion/count/disapprove/{idea}")
+    @ResponseBody
+    public Integer findTotalDisApproveFromIdea(@PathVariable("idea") int idea) {
+        return opinionDao.findTotalDisApproveFromIdea(idea);
+    }
 }

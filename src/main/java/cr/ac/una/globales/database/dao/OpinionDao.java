@@ -21,4 +21,10 @@ public interface OpinionDao extends CrudRepository<Opinion, Integer> {
     
     @Query(value="select * from opinion where user = :pUser and idea = :pIdea", nativeQuery=true)
     public Opinion findByUserAndIdea(@Param("pUser") Integer pUser, @Param("pIdea") Integer pIdea );
+    
+    @Query(value="select count(*) as approve  from opinion where idea =:pIdea and type = 1", nativeQuery=true)
+    public Integer findTotalApproveFromIdea(@Param("pIdea") Integer pIdea );
+    
+    @Query(value="select count(*) as disapprove  from opinion where idea =:pIdea and type = 2", nativeQuery=true)
+    public Integer findTotalDisApproveFromIdea(@Param("pIdea") Integer pIdea );
 }
