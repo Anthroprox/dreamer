@@ -36,6 +36,11 @@ public class IdeaController {
     public List<Idea> getList() {
         return (List<Idea>) ideaDao.findAll();
     }
+    @RequestMapping(method = GET, path = "/idea/date/list")
+    @ResponseBody
+    public List<Idea> getIdeasByDate(){
+        return (List<Idea>) ideaDao.getIdeasByDate();
+    }
 
     @RequestMapping(method = GET, path = "/idea/find/{id}")
     @ResponseBody
@@ -55,6 +60,7 @@ public class IdeaController {
         Pageable topTen = new PageRequest(0, 10);
         return ideaDao. getIdeaCount(id,topTen);
     }
+    
    
     
 }

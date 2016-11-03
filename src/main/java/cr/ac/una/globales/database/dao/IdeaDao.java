@@ -20,5 +20,7 @@ import org.springframework.data.repository.query.Param;
 public interface IdeaDao extends CrudRepository<Idea, Integer> {
     @Query("SELECT idea FROM Idea as idea,  Opinion as opinion, Type as tipo where idea.id=opinion.idea.id and tipo.id=1 and idea.category.id=? group by idea.id order by count(idea.id) DESC")
     List<Idea> getIdeaCount(@Param("category") int category, Pageable pageable);   
-
+    
+     @Query(value="select * from idea order by date desc", nativeQuery=true)
+    public List<Idea> getIdeasByDate();
 }
