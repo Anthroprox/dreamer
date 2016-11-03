@@ -46,4 +46,10 @@ public class CommentaryController {
     public Integer newCommentary(@RequestBody Commentary commentary) {
         return commentaryDao.save(commentary).getId();
     }
+    
+    @RequestMapping(method = GET, path = "/commentary/idea/{id}")
+    @ResponseBody
+    public List<Commentary> getCommentaryByIdea(@PathVariable("id")int id){
+        return commentaryDao.getCommentaryByIdea(id);
+    }
 }
