@@ -6,8 +6,11 @@
 package cr.ac.una.globales.database.dao;
 
 import cr.ac.una.globales.database.entity.Commentary;
+import java.util.List;
 import javax.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -15,5 +18,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 @Transactional
 public interface CommentaryDao extends CrudRepository<Commentary, Integer>{
-    
+    @Query("SELECT commentary FROM Commentary as commentary where commentary.idea.id=?")
+    List<Commentary> getCommentaryByIdea(@Param("idea") int idea);   
+
 }
